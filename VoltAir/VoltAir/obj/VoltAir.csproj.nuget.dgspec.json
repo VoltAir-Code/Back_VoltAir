@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\48260449846\\source\\repos\\VoltAir\\VoltAir\\VoltAir.csproj": {}
+    "C:\\Users\\48260449846\\Desktop\\Back_VoltAir\\VoltAir\\VoltAir\\VoltAir.csproj": {}
   },
   "projects": {
-    "C:\\Users\\48260449846\\source\\repos\\VoltAir\\VoltAir\\VoltAir.csproj": {
+    "C:\\Users\\48260449846\\Desktop\\Back_VoltAir\\VoltAir\\VoltAir\\VoltAir.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\48260449846\\source\\repos\\VoltAir\\VoltAir\\VoltAir.csproj",
+        "projectUniqueName": "C:\\Users\\48260449846\\Desktop\\Back_VoltAir\\VoltAir\\VoltAir\\VoltAir.csproj",
         "projectName": "VoltAir",
-        "projectPath": "C:\\Users\\48260449846\\source\\repos\\VoltAir\\VoltAir\\VoltAir.csproj",
+        "projectPath": "C:\\Users\\48260449846\\Desktop\\Back_VoltAir\\VoltAir\\VoltAir\\VoltAir.csproj",
         "packagesPath": "C:\\Users\\48260449846\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\48260449846\\source\\repos\\VoltAir\\VoltAir\\obj\\",
+        "outputPath": "C:\\Users\\48260449846\\Desktop\\Back_VoltAir\\VoltAir\\VoltAir\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\48260449846\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,6 +40,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.0.3, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[8.0.5, )"
