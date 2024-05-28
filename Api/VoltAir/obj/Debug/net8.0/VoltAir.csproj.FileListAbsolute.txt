@@ -271,3 +271,8 @@ C:\Users\49957976885\Desktop\Back_VoltAir\Api\VoltAir\obj\Debug\net8.0\refint\Vo
 C:\Users\49957976885\Desktop\Back_VoltAir\Api\VoltAir\obj\Debug\net8.0\VoltAir.pdb
 C:\Users\49957976885\Desktop\Back_VoltAir\Api\VoltAir\obj\Debug\net8.0\VoltAir.genruntimeconfig.cache
 C:\Users\49957976885\Desktop\Back_VoltAir\Api\VoltAir\obj\Debug\net8.0\ref\VoltAir.dll
+C:\Users\49957976885\Desktop\Back_VoltAir\Api\VoltAir\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\49957976885\Desktop\Back_VoltAir\Api\VoltAir\bin\Debug\net8.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\49957976885\Desktop\Back_VoltAir\Api\VoltAir\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\49957976885\Desktop\Back_VoltAir\Api\VoltAir\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\49957976885\Desktop\Back_VoltAir\Api\VoltAir\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll

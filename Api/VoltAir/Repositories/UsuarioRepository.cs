@@ -11,7 +11,10 @@ namespace VoltAir.Repositories
         {
             try
             {
+             
                 var userSearch = ctx.Usuarios.FirstOrDefault(x => x.Email == email && x.Senha == password);
+
+                if (userSearch == null) return null!;
 
                 return userSearch;
             }
