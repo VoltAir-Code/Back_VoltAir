@@ -2,8 +2,10 @@
 
 namespace VoltAir.Interfaces
 {
-    public interface IUsuario
+    public interface IUsuarioRepository
     {
         Usuario GetByEmailPassword(string email, string password);
+
+        public void UserRegister(Usuario usuario);
     }
 }
