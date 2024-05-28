@@ -5,7 +5,7 @@ using VoltAir.Utils;
 
 namespace VoltAir.Repositories
 {
-    public class UsuarioRepository : IUsuario
+    public class UsuarioRepository : IUsuarioRepository
     {
 		VoltaireContext ctx = new VoltaireContext();
         public void UserRegister(Usuario usuario)
@@ -19,7 +19,6 @@ namespace VoltAir.Repositories
 			}
 			catch (Exception)
 			{
-
 				throw;
 			}
         }

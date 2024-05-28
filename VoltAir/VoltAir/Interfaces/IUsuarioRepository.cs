@@ -2,7 +2,7 @@
 
 namespace VoltAir.Interfaces
 {
-    public interface IUsuario
+    public interface IUsuarioRepository
     {
         public void UserRegister(Usuario usuario);
     }
