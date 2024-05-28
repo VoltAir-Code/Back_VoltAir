@@ -13,9 +13,13 @@ namespace VoltAir.Repositories
             try
             {
              
-                var userSearch = ctx.Usuarios.FirstOrDefault(x => x.Email == email && x.Senha == password);
+                var userSearch = ctx.Usuarios.FirstOrDefault(x => x.Email == email);
 
                 if (userSearch == null) return null!;
+
+
+                if (!Criptografia.CompararHash(password, userSearch.Senha!)) return null!;
+
 
                 return userSearch;
             }
