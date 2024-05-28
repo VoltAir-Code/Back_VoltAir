@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("VoltAir")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+39bb2528670f367ad1c9c3986376dabbddac044c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5eddbbac466f5932599d3967dbbbcff8ffd12e68")]
 [assembly: System.Reflection.AssemblyProductAttribute("VoltAir")]
 [assembly: System.Reflection.AssemblyTitleAttribute("VoltAir")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
