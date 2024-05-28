@@ -10,11 +10,26 @@ namespace VoltAir.Controllers
     [ApiController]
     public class UsuarioController : ControllerBase
     {
-        private IUsuario usuarioRepository {  get; set; }
+        private IUsuarioRepository usuarioRepository {  get; set; }
 
         public UsuarioController()
         {
             usuarioRepository = new UsuarioRepository();
+        }
+
+        [HttpPost]
+        public IActionResult Post(Usuario newUser)
+        {
+            try
+            {
+                usuarioRepository.UserRegister(newUser);
+                return Ok();
+
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.InnerException);
+            }
         }
 
 

@@ -14,7 +14,7 @@ namespace VoltAir.Controllers
     [ApiController]
     public class LoginController : ControllerBase
     {
-        private readonly IUsuario _usuarioRepository;
+        private readonly IUsuarioRepository _usuarioRepository;
 
         public LoginController()
         {
