@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using VoltAir.Contexts;
+using VoltAir.Utils.Mail;
 
 namespace VoltAir.Controllers
 {
@@ -10,12 +11,13 @@ namespace VoltAir.Controllers
     public class RecuperarSenhaController : ControllerBase
     {
         private readonly VoltaireContext _context;
-        // private readonly EmailSendingService _emailSendingService;
+        private readonly EmailSendingService _emailSendingService;
 
-        public RecuperarSenhaController(VoltaireContext context) //EmailSendingService emailSendingService)
+
+        public RecuperarSenhaController(VoltaireContext context)
         {
             _context = context;
-            //_emailSendingService = emailSendingService;
+            
         }
 
         [HttpPost]
@@ -59,10 +61,12 @@ namespace VoltAir.Controllers
                     return NotFound("Usuário não encontrado!");
                 }
 
-                //if (user.CodRecupSenha != code)
-                //{
-                //    return BadRequest("Código de recuperação é inválido");
-                //}
+
+                if (user.CodRecupSenha != code)
+                {
+                    return BadRequest("Código de recuperação é inválido");
+                }
+
 
                 user.CodRecupSenha = null;
 
