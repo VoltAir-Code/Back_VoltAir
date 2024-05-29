@@ -26,7 +26,7 @@ public partial class VoltaireContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=DESKTOP-MHF127S; Initial Catalog=dbVoltaire; User Id=sa; Password=Senai@134; TrustServerCertificate=true;");
+        => optionsBuilder.UseSqlServer("Data Source=NOTE20-S21; Initial Catalog=dbVoltaire; User Id=sa; Password=Senai@134; TrustServerCertificate=true;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -60,7 +60,7 @@ public partial class VoltaireContext : DbContext
 
         modelBuilder.Entity<Marca>(entity =>
         {
-            entity.HasKey(e => e.IdMarca).HasName("PK__Marca__7033181270C60E6A");
+            entity.HasKey(e => e.IdMarca).HasName("PK__Marca__70331812DBBAA4B0");
 
             entity.ToTable("Marca");
 
@@ -75,7 +75,7 @@ public partial class VoltaireContext : DbContext
 
         modelBuilder.Entity<Registro>(entity =>
         {
-            entity.HasKey(e => e.IdRegistro).HasName("PK__Registro__62FC8F58FCF1BD8A");
+            entity.HasKey(e => e.IdRegistro).HasName("PK__Registro__62FC8F58E4144EE4");
 
             entity.Property(e => e.IdRegistro)
                 .ValueGeneratedNever()

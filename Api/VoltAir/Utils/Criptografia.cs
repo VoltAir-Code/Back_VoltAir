@@ -7,9 +7,9 @@
             return BCrypt.Net.BCrypt.HashPassword(passWord);
         }
 
-        public static bool ComparareHash(string formPassWord, string DbPassWord)
+        public static bool CompararHash(string senhaForm, string senhaBanco)
         {
-            return BCrypt.Net.BCrypt.Verify(formPassWord, DbPassWord);
+            return BCrypt.Net.BCrypt.Verify(senhaForm, senhaBanco);
         }
     }
 }
