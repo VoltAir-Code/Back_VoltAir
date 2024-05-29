@@ -37,6 +37,7 @@ public partial class VoltaireContext : DbContext
             entity.Property(e => e.IdCarro)
                 .ValueGeneratedNever()
                 .HasColumnName("idCarro");
+            entity.Property(e => e.DurBateria).HasColumnType("datetime");
             entity.Property(e => e.IdMarca).HasColumnName("idMarca");
             entity.Property(e => e.IdRegistro).HasColumnName("idRegistro");
             entity.Property(e => e.Modelo)
