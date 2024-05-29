@@ -15,7 +15,7 @@ public partial class Carro
 
     public string? Placa { get; set; }
 
-    public TimeOnly? DurBateria { get; set; }
+    public DateTime? DurBateria { get; set; }
 
     public virtual Marca? IdMarcaNavigation { get; set; }
 

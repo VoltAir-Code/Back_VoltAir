@@ -22,7 +22,7 @@ namespace VoltAir.Controllers
         }
 
 
-        [HttpPost("Login")]
+        [HttpPost]
         public IActionResult Login(LoginViewModel user)
         {
             try
