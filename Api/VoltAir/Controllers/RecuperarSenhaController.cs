@@ -12,7 +12,7 @@ namespace VoltAir.Controllers
         private readonly VoltaireContext _context;
         // private readonly EmailSendingService _emailSendingService;
 
-        public RecuperarSenhaController(VoltaireContext context, //EmailSendingService emailSendingService)
+        public RecuperarSenhaController(VoltaireContext context) //EmailSendingService emailSendingService)
         {
             _context = context;
             //_emailSendingService = emailSendingService;
@@ -32,7 +32,7 @@ namespace VoltAir.Controllers
 
                 Random random = new Random();
                 int recoveryCode = random.Next(1000, 9999);
-                user.CodRecupSenha = recoveryCode;
+                //user.CodRecupSenha = recoveryCode;
 
                 await _context.SaveChangesAsync();
 
@@ -59,10 +59,10 @@ namespace VoltAir.Controllers
                     return NotFound("Usuário não encontrado!");
                 }
 
-                if (user.CodRecupSenha != code)
-                {
-                    return BadRequest("Código de recuperação é inválido");
-                }
+                //if (user.CodRecupSenha != code)
+                //{
+                //    return BadRequest("Código de recuperação é inválido");
+                //}
 
                 user.CodRecupSenha = null;
 

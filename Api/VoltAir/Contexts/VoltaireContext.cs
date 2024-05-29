@@ -37,7 +37,6 @@ public partial class VoltaireContext : DbContext
             entity.Property(e => e.IdCarro)
                 .ValueGeneratedNever()
                 .HasColumnName("idCarro");
-            entity.Property(e => e.DurBateria).HasColumnType("datetime");
             entity.Property(e => e.IdMarca).HasColumnName("idMarca");
             entity.Property(e => e.IdRegistro).HasColumnName("idRegistro");
             entity.Property(e => e.Modelo)
@@ -60,7 +59,7 @@ public partial class VoltaireContext : DbContext
 
         modelBuilder.Entity<Marca>(entity =>
         {
-            entity.HasKey(e => e.IdMarca).HasName("PK__Marca__7033181270C60E6A");
+            entity.HasKey(e => e.IdMarca).HasName("PK__Marca__70331812DBBAA4B0");
 
             entity.ToTable("Marca");
 
@@ -75,7 +74,7 @@ public partial class VoltaireContext : DbContext
 
         modelBuilder.Entity<Registro>(entity =>
         {
-            entity.HasKey(e => e.IdRegistro).HasName("PK__Registro__62FC8F58FCF1BD8A");
+            entity.HasKey(e => e.IdRegistro).HasName("PK__Registro__62FC8F58E4144EE4");
 
             entity.Property(e => e.IdRegistro)
                 .ValueGeneratedNever()
@@ -91,9 +90,6 @@ public partial class VoltaireContext : DbContext
             entity.Property(e => e.IdUsuario)
                 .ValueGeneratedNever()
                 .HasColumnName("idUsuario");
-            entity.Property(e => e.CodRecupSenha)
-                .HasMaxLength(10)
-                .IsFixedLength();
             entity.Property(e => e.Email)
                 .HasMaxLength(255)
                 .IsUnicode(false)
