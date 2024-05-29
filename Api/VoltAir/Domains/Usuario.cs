@@ -15,7 +15,7 @@ public partial class Usuario
 
     public string Senha { get; set; } = null!;
 
-    public string? CodRecupSenha { get; set; }
+    public int? CodRecupSenha { get; set; }
 
     public string? Foto { get; set; }
 

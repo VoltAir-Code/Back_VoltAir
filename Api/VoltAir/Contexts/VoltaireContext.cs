@@ -37,7 +37,6 @@ public partial class VoltaireContext : DbContext
             entity.Property(e => e.IdCarro)
                 .ValueGeneratedNever()
                 .HasColumnName("idCarro");
-            entity.Property(e => e.DurBateria).HasColumnType("datetime");
             entity.Property(e => e.IdMarca).HasColumnName("idMarca");
             entity.Property(e => e.IdRegistro).HasColumnName("idRegistro");
             entity.Property(e => e.Modelo)
@@ -91,9 +90,6 @@ public partial class VoltaireContext : DbContext
             entity.Property(e => e.IdUsuario)
                 .ValueGeneratedNever()
                 .HasColumnName("idUsuario");
-            entity.Property(e => e.CodRecupSenha)
-                .HasMaxLength(10)
-                .IsFixedLength();
             entity.Property(e => e.Email)
                 .HasMaxLength(255)
                 .IsUnicode(false)
