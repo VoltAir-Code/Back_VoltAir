@@ -91,6 +91,9 @@ public partial class VoltaireContext : DbContext
             entity.Property(e => e.IdUsuario)
                 .ValueGeneratedNever()
                 .HasColumnName("idUsuario");
+            entity.Property(e => e.CodRecupSenha)
+                .HasMaxLength(10)
+                .IsFixedLength();
             entity.Property(e => e.Email)
                 .HasMaxLength(255)
                 .IsUnicode(false)

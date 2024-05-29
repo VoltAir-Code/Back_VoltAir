@@ -5,7 +5,7 @@ namespace VoltAir.Domains;
 
 public partial class Registro
 {
-    public Guid IdRegistro { get; set; } = Guid.NewGuid();
+    public Guid IdRegistro { get; set; }
 
     public DateTime? UltimaRecarga { get; set; }
 

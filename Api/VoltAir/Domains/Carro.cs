@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace VoltAir.Domains;
 
-public partial class Carro 
+public partial class Carro
 {
-    public Guid IdCarro { get; set; } = Guid.NewGuid();
+    public Guid IdCarro { get; set; }
 
     public Guid? IdMarca { get; set; }
 

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using VoltAir.Domains;
 using VoltAir.Interfaces;
 using VoltAir.Repositories;
+using VoltAir.ViewModels;
 
 namespace VoltAir.Controllers
 {
@@ -18,10 +19,18 @@ namespace VoltAir.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(Usuario newUser)
+        public IActionResult Post(UsuarioViewModel userModel)
         {
             try
             {
+                Usuario newUser = new Usuario();
+
+                newUser.Email = userModel.Email!;
+                newUser.Senha = userModel.Senha;
+                newUser.Nome = userModel.Nome;
+                newUser.IdCarro = userModel.IdCarro;
+                newUser.Foto = userModel.Foto;
+
                 usuarioRepository.UserRegister(newUser);
                 return Ok();
 
@@ -29,6 +38,21 @@ namespace VoltAir.Controllers
             catch (Exception e)
             {
                 return BadRequest(e.InnerException);
+            }
+        }
+
+        [HttpPut("AlterarSenha")]
+        public IActionResult UpdatePassword(string email, AlterarSenhaViewModel passWord)
+        {
+            try
+            {
+                usuarioRepository.ChangePassword(email, passWord.SenhaNova!);
+
+                return Ok("Senha alterada com sucesso !");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
             }
         }
 
