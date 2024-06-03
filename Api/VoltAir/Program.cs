@@ -4,6 +4,7 @@ using Microsoft.OpenApi.Models;
 using Newtonsoft.Json;
 using VoltAir.Contexts;
 using VoltAir.Utils.Mail;
+using VoltAir.Utils.OCR;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -99,6 +100,8 @@ builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection(nameo
 
 // Registrando o serviço de e-mail como uma instância transitória, que é criada cada vez que é solicitada
 builder.Services.AddTransient<IEmailService, EmailService>();
+
+builder.Services.AddScoped<OcrService>();
 
 builder.Services.AddDbContext<VoltaireContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SqlDataBase")));
