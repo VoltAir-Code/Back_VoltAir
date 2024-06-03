@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using VoltAir.Domains;
 using VoltAir.Interfaces;
 using VoltAir.Repositories;
 
@@ -27,6 +28,21 @@ namespace VoltAir.Controllers
             {
 
                 return BadRequest(ex.InnerException);
+            }
+        }
+
+
+        [HttpPut]
+        public IActionResult PutCar(Guid idCarro, Carro car)
+        {
+            try
+            {
+                return Ok(carroRepository.UpdateCar(idCarro, car));
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
     }
