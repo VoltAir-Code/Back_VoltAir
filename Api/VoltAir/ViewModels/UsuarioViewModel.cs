@@ -1,20 +1,24 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace VoltAir.ViewModels
 {
     public class UsuarioViewModel
     {
 
-        [Required(ErrorMessage = "Nome Obrigatório")]
-        public string Nome { get; set; }
-
-        [Required(ErrorMessage = "Email Obrigatório")]
+        public string? Nome { get; set; }
         public string? Email { get; set; }
-
-        [Required(ErrorMessage = "Senha Obrigatória")]
-        public string Senha { get; set; }
+        public string? Senha { get; set; }
         public Guid? IdCarro { get; set; }
 
         public string? Foto { get; set; }
+
+        [NotMapped]
+        [JsonIgnore]
+        public IFormFile? Arquivo
+        {
+            get; set;
+        }
     }
 }

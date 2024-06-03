@@ -1,4 +1,5 @@
-﻿using VoltAir.Contexts;
+﻿using Microsoft.EntityFrameworkCore;
+using VoltAir.Contexts;
 using VoltAir.Domains;
 using VoltAir.Interfaces;
 

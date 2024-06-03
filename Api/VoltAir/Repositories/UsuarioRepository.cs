@@ -2,6 +2,7 @@
 using VoltAir.Domains;
 using VoltAir.Interfaces;
 using VoltAir.Utils;
+using VoltAir.ViewModels;
 
 namespace VoltAir.Repositories
 {
@@ -53,6 +54,61 @@ namespace VoltAir.Repositories
                 throw;
             }
    
+        }
+
+        public Usuario GetById(Guid id)
+        {
+            return ctx.Usuarios.FirstOrDefault(x => x.IdUsuario == id)!;
+        }
+
+        public void PutFoto(Guid id, string newUrl)
+        {
+            try
+            {
+                Usuario searchUser = ctx.Usuarios.FirstOrDefault(x => x.IdUsuario == id)!;
+              
+                 
+
+                if (searchUser != null)
+                {
+                searchUser.Foto = newUrl;   
+                }
+                ctx.SaveChanges();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public Usuario PutUser(Guid id, UsuarioViewModel usuario)
+        {
+            try
+            {
+
+                var searchUser = ctx.Usuarios.Find(id);
+
+                if (searchUser == null)
+                    return null;
+
+
+                if (usuario.IdCarro != null)
+                    searchUser.IdCarro = usuario.IdCarro;
+
+                if(usuario.Foto != null)
+                    searchUser.Foto = usuario.Foto;
+
+                ctx.Usuarios.Update(searchUser);
+
+                ctx.SaveChanges();
+                return searchUser;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public void UserRegister(Usuario usuario)
