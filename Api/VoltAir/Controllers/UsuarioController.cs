@@ -22,15 +22,15 @@ namespace VoltAir.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromForm] UsuarioViewModel userModel)
+        public IActionResult Post(UsuarioViewModel userModel)
         {
             try
             {
                 Usuario newUser = new Usuario();
 
                 newUser.Email = userModel.Email!;
-                newUser.Senha = userModel.Senha;
-                newUser.Nome = userModel.Nome;
+                newUser.Senha = userModel.Senha!;
+                newUser.Nome = userModel.Nome!;
                 newUser.IdCarro = userModel.IdCarro;
                 newUser.Foto = userModel.Foto;
 
