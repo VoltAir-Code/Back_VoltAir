@@ -9,6 +9,19 @@ namespace VoltAir.Repositories
     {
         VoltaireContext ctx = new VoltaireContext();
 
+        public Carro GetCarById(Guid idCarro)
+        {
+            try
+            {
+                return ctx.Carros.Find(idCarro)!;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         public List<Carro> GetCarro()
         {
             try
@@ -26,7 +39,7 @@ namespace VoltAir.Repositories
         {
             var searchCar = ctx.Carros.Find(idCarro);
 
-            searchCar.IdMarca = car.IdMarca;
+            searchCar!.IdMarca = car.IdMarca;
             searchCar.Modelo = car.Modelo;
             searchCar.Placa = car.Placa;
 
@@ -37,5 +50,6 @@ namespace VoltAir.Repositories
             return searchCar;
 
         }
+
     }
 }

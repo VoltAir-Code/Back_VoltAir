@@ -22,7 +22,7 @@ namespace VoltAir.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(UsuarioViewModel userModel)
+        public IActionResult Post([FromForm] UsuarioViewModel userModel)
         {
             try
             {
@@ -41,6 +41,20 @@ namespace VoltAir.Controllers
             catch (Exception e)
             {
                 return BadRequest(e.InnerException);
+            }
+        }
+
+        [HttpGet("BuscarPorId")]
+        public IActionResult GetById(Guid id) 
+        {
+            try
+            {
+                return Ok(usuarioRepository.GetById(id));
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.InnerException);
             }
         }
 
