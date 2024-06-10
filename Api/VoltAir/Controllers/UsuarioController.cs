@@ -22,7 +22,7 @@ namespace VoltAir.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(UsuarioViewModel userModel)
+        public IActionResult Post([FromForm] UsuarioViewModel userModel)
         {
             try
             {
