@@ -15,6 +15,10 @@ public partial class Carro
 
     public string? Placa { get; set; }
 
+    public int? Autonomia { get; set; }
+
+    public int? Capacidade { get; set; }
+
     public DateTime? DurBateria { get; set; }
 
     public virtual Marca? IdMarcaNavigation { get; set; }

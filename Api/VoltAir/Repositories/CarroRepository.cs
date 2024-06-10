@@ -13,7 +13,8 @@ namespace VoltAir.Repositories
         {
             try
             {
-                return ctx.Carros.Find(idCarro)!;
+                return ctx.Carros
+                    .Include(c => c.IdMarcaNavigation).FirstOrDefault(c => c.IdCarro == idCarro)!;
             }
             catch (Exception)
             {
@@ -26,7 +27,22 @@ namespace VoltAir.Repositories
         {
             try
             {
-                return ctx.Carros.ToList();
+                return ctx.Carros
+                    .Include(c => c.IdMarcaNavigation)
+                    .Select(c => new Carro
+                    {
+                        IdCarro = c.IdCarro,
+                        Modelo = c.Modelo,
+                        DurBateria = c.DurBateria,
+                        Capacidade = c.Capacidade,
+                        Autonomia = c.Autonomia,
+
+                        IdMarcaNavigation = new Marca
+                        {
+                            IdMarca = c.IdMarcaNavigation!.IdMarca,
+                            NomeMarca = c.IdMarcaNavigation.NomeMarca
+                        }
+                    }).ToList();
             }
             catch (Exception)
             {

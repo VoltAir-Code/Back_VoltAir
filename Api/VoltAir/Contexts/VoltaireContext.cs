@@ -60,7 +60,7 @@ public partial class VoltaireContext : DbContext
 
         modelBuilder.Entity<Marca>(entity =>
         {
-            entity.HasKey(e => e.IdMarca).HasName("PK__Marca__70331812DBBAA4B0");
+            entity.HasKey(e => e.IdMarca).HasName("PK__Marca__7033181270C60E6A");
 
             entity.ToTable("Marca");
 
@@ -75,7 +75,7 @@ public partial class VoltaireContext : DbContext
 
         modelBuilder.Entity<Registro>(entity =>
         {
-            entity.HasKey(e => e.IdRegistro).HasName("PK__Registro__62FC8F58E4144EE4");
+            entity.HasKey(e => e.IdRegistro).HasName("PK__Registro__62FC8F58FCF1BD8A");
 
             entity.Property(e => e.IdRegistro)
                 .ValueGeneratedNever()
