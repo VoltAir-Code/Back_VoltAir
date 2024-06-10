@@ -29,8 +29,8 @@ namespace VoltAir.Controllers
                 Usuario newUser = new Usuario();
 
                 newUser.Email = userModel.Email!;
-                newUser.Senha = userModel.Senha;
-                newUser.Nome = userModel.Nome;
+                newUser.Senha = userModel.Senha!;
+                newUser.Nome = userModel.Nome!;
                 newUser.IdCarro = userModel.IdCarro;
                 newUser.Foto = userModel.Foto;
 
@@ -41,6 +41,20 @@ namespace VoltAir.Controllers
             catch (Exception e)
             {
                 return BadRequest(e.InnerException);
+            }
+        }
+
+        [HttpGet("BuscarPorId")]
+        public IActionResult GetById(Guid id) 
+        {
+            try
+            {
+                return Ok(usuarioRepository.GetById(id));
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.InnerException);
             }
         }
 
