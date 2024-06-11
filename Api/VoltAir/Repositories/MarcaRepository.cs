@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using VoltAir.Contexts;
 using VoltAir.Domains;
 using VoltAir.Interfaces;
@@ -7,18 +9,47 @@ namespace VoltAir.Repositories
 {
     public class MarcaRepository : IMarcaRepository
     {
-        VoltaireContext ctx = new VoltaireContext();
+        private readonly VoltaireContext ctx;
+
+        public MarcaRepository(VoltaireContext context)
+        {
+            ctx = context;
+        }
+
         public List<Marca> GetMarca()
         {
-			try
-			{
+            try
+            {
                 return ctx.Marcas.Include(x => x.Carros).ToList();
-			}
-			catch (Exception)
-			{
+            }
+            catch (Exception)
+            {
 
-				throw;
-			}
+                try
+                {
+                    return ctx.Marcas.Include(m => m.Carros).ToList();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            }
+        }
+
+
+            public Marca GetBrandById(Guid idMarca)
+            {
+                try
+                {
+                    return ctx.Marcas
+                        .Include(m => m.Carros)
+                        .FirstOrDefault(c => c.IdMarca == idMarca)!;
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+            }
         }
     }
-}
