@@ -1,5 +1,6 @@
-using System.Linq;
+
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using VoltAir.Contexts;
 using VoltAir.Domains;
 using VoltAir.Interfaces;
@@ -19,27 +20,36 @@ namespace VoltAir.Repositories
         {
             try
             {
-                return ctx.Marcas.Include(m => m.Carros).ToList();
+                return ctx.Marcas.Include(x => x.Carros).ToList();
             }
             catch (Exception)
             {
-                throw;
+
+                try
+                {
+                    return ctx.Marcas.Include(m => m.Carros).ToList();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
             }
         }
 
-        public Marca GetBrandById(Guid idMarca)
-        {
-            try
-            {
-                return ctx.Marcas
-                    .Include(m => m.Carros)
-                    .FirstOrDefault(c => c.IdMarca == idMarca)!;
-            }
-            catch (Exception)
-            {
 
-                throw;
+            public Marca GetBrandById(Guid idMarca)
+            {
+                try
+                {
+                    return ctx.Marcas
+                        .Include(m => m.Carros)
+                        .FirstOrDefault(c => c.IdMarca == idMarca)!;
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
             }
         }
     }
-}
