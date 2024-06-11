@@ -98,12 +98,7 @@ namespace VoltAir.Repositories
                     return null;
 
 
-                if (usuario.IdCarro != null)
-                {
-                    //searchUser.IdCarro = usuario.IdCarro;
-                    //searchUser.IdCarroNavigation!.Placa = usuario.Placa;
-                }
-
+        
 
 
                 ctx.Usuarios.Update(searchUser);
