@@ -97,10 +97,6 @@ namespace VoltAir.Repositories
                 if (searchUser == null)
                     return null;
 
-
-        
-
-
                 ctx.Usuarios.Update(searchUser);
 
                 ctx.SaveChanges();
