@@ -1,4 +1,5 @@
-﻿using VoltAir.Contexts;
+﻿using Microsoft.EntityFrameworkCore;
+using VoltAir.Contexts;
 using VoltAir.Domains;
 using VoltAir.Interfaces;
 
@@ -11,7 +12,7 @@ namespace VoltAir.Repositories
         {
 			try
 			{
-                return ctx.Marcas.ToList();
+                return ctx.Marcas.Include(x => x.Carros).ToList();
 			}
 			catch (Exception)
 			{
