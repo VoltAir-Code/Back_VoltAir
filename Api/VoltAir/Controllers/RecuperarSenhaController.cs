@@ -14,10 +14,11 @@ namespace VoltAir.Controllers
         private readonly EmailSendingService _emailSendingService;
 
 
-        public RecuperarSenhaController(VoltaireContext context)
+        public RecuperarSenhaController(VoltaireContext context, EmailSendingService emailSendingService)
         {
             _context = context;
-            
+            _emailSendingService = emailSendingService;
+
         }
 
         [HttpPost]
@@ -34,11 +35,11 @@ namespace VoltAir.Controllers
 
                 Random random = new Random();
                 int recoveryCode = random.Next(1000, 9999);
-                //user.CodRecupSenha = recoveryCode;
+                user.CodRecupSenha = recoveryCode;
 
                 await _context.SaveChangesAsync();
 
-               // await _emailSendingService.SendRecoveryPassword(user!.Email!, recoveryCode);
+                await _emailSendingService.SendRecoveryPassword(user!.Email!, recoveryCode);
 
                 return Ok("Código de confirmação enviado com sucesso!");
             }

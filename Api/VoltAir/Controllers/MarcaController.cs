@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using VoltAir.Domains;
 using VoltAir.Interfaces;
 using VoltAir.Repositories;
+using VoltAir.Contexts;
 
 namespace VoltAir.Controllers
 {
@@ -10,11 +11,11 @@ namespace VoltAir.Controllers
     [ApiController]
     public class MarcaController : ControllerBase
     {
-        private IMarcaRepository marcaRepository { get; set; }
+        private readonly IMarcaRepository marcaRepository;
 
-        public MarcaController()
+        public MarcaController(VoltaireContext context)
         {
-            marcaRepository = new MarcaRepository();
+            marcaRepository = new MarcaRepository(context);
         }
 
         [HttpGet]
@@ -26,6 +27,20 @@ namespace VoltAir.Controllers
             }
             catch (Exception ex)
             {
+                return BadRequest(ex.InnerException);
+            }
+        }
+
+        [HttpGet("BuscarPorId")]
+        public IActionResult GetBrandById(Guid idMarca)
+        {
+            try
+            {
+                return Ok(marcaRepository.GetBrandById(idMarca));
+            }
+            catch (Exception ex)
+            {
+
                 return BadRequest(ex.InnerException);
             }
         }
