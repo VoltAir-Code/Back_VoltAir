@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Org.BouncyCastle.Crypto.Signers;
 using System.IdentityModel.Tokens.Jwt;
+using VoltAir.Contexts;
 using VoltAir.Domains;
 using VoltAir.Interfaces;
 using VoltAir.Repositories;
@@ -14,6 +15,8 @@ namespace VoltAir.Controllers
     [ApiController]
     public class UsuarioController : ControllerBase
     {
+
+       VoltaireContext ctx = new VoltaireContext();
         private IUsuarioRepository usuarioRepository {  get; set; }
 
         public UsuarioController()
@@ -28,11 +31,17 @@ namespace VoltAir.Controllers
             {
                 Usuario newUser = new Usuario();
 
+
+                var userSearch = ctx.Usuarios.FirstOrDefault(x => x.Email == userModel.Email);
+                if(userSearch != null)
+                {
+                    return BadRequest("Email já está registrado!");
+                }
                 newUser.Email = userModel.Email!;
                 newUser.Senha = userModel.Senha!;
                 newUser.Nome = userModel.Nome!;
-                newUser.IdCarro = userModel.IdCarro;
-                newUser.Foto = userModel.Foto;
+         
+
 
                 usuarioRepository.UserRegister(newUser);
                 return Ok();
@@ -59,7 +68,7 @@ namespace VoltAir.Controllers
         }
 
         [HttpPut("AlterarSenha")]
-        public IActionResult UpdatePassword(string email, AlterarSenhaViewModel passWord)
+        public IActionResult UpdatePassword(string email, [FromBody] AlterarSenhaViewModel passWord)
         {
             try
             {
@@ -74,7 +83,7 @@ namespace VoltAir.Controllers
         }
 
         [HttpPut("AlterarFotoPerfil")]
-        public async Task<IActionResult> UpdateProfileImage(Guid id, [FromForm] FotoUserViewModel form)
+        public async Task<IActionResult> UpdateProfileImage(Guid id,  FotoUserViewModel form)
         {
             try
             {
@@ -105,7 +114,7 @@ namespace VoltAir.Controllers
 
 
         [HttpPut("AlterarPerfil")]
-        public IActionResult PutUser(UsuarioViewModel user)
+        public IActionResult PutUser([FromBody] UsuarioViewModel user)
         {
             Guid idUsuario = Guid.Parse(HttpContext.User.Claims.First(c => c.Type == JwtRegisteredClaimNames.Jti).Value);
 
