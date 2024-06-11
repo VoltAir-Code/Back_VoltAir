@@ -32,10 +32,7 @@ namespace VoltAir.Repositories
                     .Select(c => new Carro
                     {
                         IdCarro = c.IdCarro,
-                        Modelo = c.Modelo,
-                        DurBateria = c.DurBateria,
-                        Capacidade = c.Capacidade,
-                        Autonomia = c.Autonomia,
+            
 
                         IdMarcaNavigation = new Marca
                         {
@@ -56,7 +53,7 @@ namespace VoltAir.Repositories
             var searchCar = ctx.Carros.Find(idCarro);
 
             searchCar!.IdMarca = car.IdMarca;
-            searchCar.Modelo = car.Modelo;
+
             searchCar.Placa = car.Placa;
 
             ctx.Entry(searchCar).CurrentValues.SetValues(searchCar);

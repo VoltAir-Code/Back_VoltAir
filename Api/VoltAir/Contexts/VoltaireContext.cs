@@ -20,6 +20,8 @@ public partial class VoltaireContext : DbContext
 
     public virtual DbSet<Marca> Marcas { get; set; }
 
+    public virtual DbSet<Modelo> Modelos { get; set; }
+
     public virtual DbSet<Registro> Registros { get; set; }
 
     public virtual DbSet<Usuario> Usuarios { get; set; }
@@ -37,6 +39,7 @@ public partial class VoltaireContext : DbContext
             entity.Property(e => e.IdCarro)
                 .ValueGeneratedNever()
                 .HasColumnName("idCarro");
+<<<<<<< HEAD
             entity.Property(e => e.CapacidadeAtual).HasColumnType("datetime");
             entity.Property(e => e.DurBateria).HasColumnType("datetime");
             entity.Property(e => e.IdMarca).HasColumnName("idMarca");
@@ -44,6 +47,13 @@ public partial class VoltaireContext : DbContext
                 .HasMaxLength(255)
                 .IsUnicode(false)
                 .HasColumnName("modelo");
+=======
+            entity.Property(e => e.BateriaAtual).HasColumnType("datetime");
+            entity.Property(e => e.IdMarca).HasColumnName("idMarca");
+            entity.Property(e => e.IdModelo).HasColumnName("idModelo");
+            entity.Property(e => e.IdRegistro).HasColumnName("idRegistro");
+            entity.Property(e => e.IdUsuario).HasColumnName("idUsuario");
+>>>>>>> b1e53c0fd7edac9fec8185233f2714036d7161b1
             entity.Property(e => e.Placa)
                 .HasMaxLength(255)
                 .IsUnicode(false)
@@ -52,11 +62,30 @@ public partial class VoltaireContext : DbContext
             entity.HasOne(d => d.IdMarcaNavigation).WithMany(p => p.Carros)
                 .HasForeignKey(d => d.IdMarca)
                 .HasConstraintName("FK_Carros_Marca");
+<<<<<<< HEAD
+=======
+
+            entity.HasOne(d => d.IdModeloNavigation).WithMany(p => p.Carros)
+                .HasForeignKey(d => d.IdModelo)
+                .HasConstraintName("FK_Carros_Modelos");
+
+            entity.HasOne(d => d.IdRegistroNavigation).WithMany(p => p.Carros)
+                .HasForeignKey(d => d.IdRegistro)
+                .HasConstraintName("FK_Carros_Registros");
+
+            entity.HasOne(d => d.IdUsuarioNavigation).WithMany(p => p.Carros)
+                .HasForeignKey(d => d.IdUsuario)
+                .HasConstraintName("FK_Carros_Usuarios");
+>>>>>>> b1e53c0fd7edac9fec8185233f2714036d7161b1
         });
 
         modelBuilder.Entity<Marca>(entity =>
         {
+<<<<<<< HEAD
             entity.HasKey(e => e.IdMarca).HasName("PK__Marca__703318120415EDF0");
+=======
+            entity.HasKey(e => e.IdMarca).HasName("PK__Marca__70331812E7574424");
+>>>>>>> b1e53c0fd7edac9fec8185233f2714036d7161b1
 
             entity.ToTable("Marca");
 
@@ -67,6 +96,19 @@ public partial class VoltaireContext : DbContext
                 .HasMaxLength(255)
                 .IsUnicode(false)
                 .HasColumnName("nomeMarca");
+        });
+
+        modelBuilder.Entity<Modelo>(entity =>
+        {
+            entity.HasKey(e => e.IdModelo);
+
+            entity.Property(e => e.IdModelo)
+                .ValueGeneratedNever()
+                .HasColumnName("idModelo");
+            entity.Property(e => e.DurBateria).HasColumnType("datetime");
+            entity.Property(e => e.NomeModelo)
+                .HasMaxLength(255)
+                .HasColumnName("nomeModelo");
         });
 
         modelBuilder.Entity<Registro>(entity =>
@@ -100,7 +142,6 @@ public partial class VoltaireContext : DbContext
                 .HasMaxLength(255)
                 .IsUnicode(false)
                 .HasColumnName("foto");
-            entity.Property(e => e.IdCarro).HasColumnName("idCarro");
             entity.Property(e => e.Nome)
                 .HasMaxLength(255)
                 .IsUnicode(false)
@@ -109,10 +150,6 @@ public partial class VoltaireContext : DbContext
                 .HasMaxLength(255)
                 .IsUnicode(false)
                 .HasColumnName("senha");
-
-            entity.HasOne(d => d.IdCarroNavigation).WithMany(p => p.Usuarios)
-                .HasForeignKey(d => d.IdCarro)
-                .HasConstraintName("FK_Usuarios_Carros");
         });
 
         OnModelCreatingPartial(modelBuilder);

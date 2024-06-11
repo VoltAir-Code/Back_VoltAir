@@ -1,4 +1,5 @@
-﻿using VoltAir.Contexts;
+﻿using Microsoft.EntityFrameworkCore;
+using VoltAir.Contexts;
 using VoltAir.Domains;
 using VoltAir.Interfaces;
 using VoltAir.Utils;
@@ -16,8 +17,9 @@ namespace VoltAir.Repositories
             {
                 var user = ctx.Usuarios.FirstOrDefault(x => x.Email == email);
 
-                if (user == null) return false;
-                
+                if (user == null)
+                    return false;
+
                 user.Senha = Criptografia.CreateHash(newPassword);
 
                 ctx.Update(user);
@@ -37,13 +39,15 @@ namespace VoltAir.Repositories
         {
             try
             {
-             
+
                 var userSearch = ctx.Usuarios.FirstOrDefault(x => x.Email == email);
 
-                if (userSearch == null) return null!;
+                if (userSearch == null)
+                    return null!;
 
 
-                if (!Criptografia.CompararHash(password, userSearch.Senha!)) return null!;
+                if (!Criptografia.CompararHash(password, userSearch.Senha!))
+                    return null!;
 
 
                 return userSearch;
@@ -53,7 +57,7 @@ namespace VoltAir.Repositories
 
                 throw;
             }
-   
+
         }
 
         public Usuario GetById(Guid id)
@@ -66,12 +70,12 @@ namespace VoltAir.Repositories
             try
             {
                 Usuario searchUser = ctx.Usuarios.FirstOrDefault(x => x.IdUsuario == id)!;
-              
-                 
+
+
 
                 if (searchUser != null)
                 {
-                searchUser.Foto = newUrl;   
+                    searchUser.Foto = newUrl;
                 }
                 ctx.SaveChanges();
             }
@@ -87,17 +91,20 @@ namespace VoltAir.Repositories
             try
             {
 
-                var searchUser = ctx.Usuarios.Find(id);
+                var searchUser = ctx.Usuarios.FirstOrDefault(x => x.IdUsuario == id);
+
 
                 if (searchUser == null)
                     return null;
 
 
                 if (usuario.IdCarro != null)
-                    searchUser.IdCarro = usuario.IdCarro;
+                {
+                    //searchUser.IdCarro = usuario.IdCarro;
+                    //searchUser.IdCarroNavigation!.Placa = usuario.Placa;
+                }
 
-                if(usuario.Foto != null)
-                    searchUser.Foto = usuario.Foto;
+
 
                 ctx.Usuarios.Update(searchUser);
 
@@ -115,6 +122,15 @@ namespace VoltAir.Repositories
         {
             try
             {
+
+                var userSearch = ctx.Usuarios.FirstOrDefault(x => x.Email == usuario.Email);
+
+                if (userSearch != null)
+                {
+
+                    return;
+                }
+
                 usuario.Senha = Criptografia.CreateHash(usuario.Senha!);
                 ctx.Add(usuario);
                 ctx.SaveChanges();
