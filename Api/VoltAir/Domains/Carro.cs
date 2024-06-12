@@ -9,8 +9,6 @@ public partial class Carro
 
     public Guid? IdUsuario { get; set; }
 
-    public Guid? IdMarca { get; set; }
-
     public Guid? IdRegistro { get; set; }
 
     public Guid? IdModelo { get; set; }
@@ -18,8 +16,6 @@ public partial class Carro
     public string? Placa { get; set; }
 
     public DateTime? BateriaAtual { get; set; }
-
-    public virtual Marca? IdMarcaNavigation { get; set; }
 
     public virtual Modelo? IdModeloNavigation { get; set; }
 

@@ -20,19 +20,11 @@ namespace VoltAir.Repositories
         {
             try
             {
-                return ctx.Marcas.Include(x => x.Carros).ToList();
+                return ctx.Marcas.ToList();
             }
             catch (Exception)
             {
-
-                try
-                {
-                    return ctx.Marcas.Include(m => m.Carros).ToList();
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
+                throw;
             }
         }
 
@@ -42,7 +34,7 @@ namespace VoltAir.Repositories
                 try
                 {
                     return ctx.Marcas
-                        .Include(m => m.Carros)
+                        .Include(c => c.Modelos)
                         .FirstOrDefault(c => c.IdMarca == idMarca)!;
                 }
                 catch (Exception)

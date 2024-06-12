@@ -40,7 +40,6 @@ public partial class VoltaireContext : DbContext
                 .ValueGeneratedNever()
                 .HasColumnName("idCarro");
             entity.Property(e => e.BateriaAtual).HasColumnType("datetime");
-            entity.Property(e => e.IdMarca).HasColumnName("idMarca");
             entity.Property(e => e.IdModelo).HasColumnName("idModelo");
             entity.Property(e => e.IdRegistro).HasColumnName("idRegistro");
             entity.Property(e => e.IdUsuario).HasColumnName("idUsuario");
@@ -48,10 +47,6 @@ public partial class VoltaireContext : DbContext
                 .HasMaxLength(255)
                 .IsUnicode(false)
                 .HasColumnName("placa");
-
-            entity.HasOne(d => d.IdMarcaNavigation).WithMany(p => p.Carros)
-                .HasForeignKey(d => d.IdMarca)
-                .HasConstraintName("FK_Carros_Marca");
 
             entity.HasOne(d => d.IdModeloNavigation).WithMany(p => p.Carros)
                 .HasForeignKey(d => d.IdModelo)
@@ -68,7 +63,7 @@ public partial class VoltaireContext : DbContext
 
         modelBuilder.Entity<Marca>(entity =>
         {
-            entity.HasKey(e => e.IdMarca).HasName("PK__Marca__70331812E7574424");
+            entity.HasKey(e => e.IdMarca).HasName("PK__Marca__70331812A46753E3");
 
             entity.ToTable("Marca");
 
@@ -89,9 +84,14 @@ public partial class VoltaireContext : DbContext
                 .ValueGeneratedNever()
                 .HasColumnName("idModelo");
             entity.Property(e => e.DurBateria).HasColumnType("datetime");
+            entity.Property(e => e.IdMarca).HasColumnName("idMarca");
             entity.Property(e => e.NomeModelo)
                 .HasMaxLength(255)
                 .HasColumnName("nomeModelo");
+
+            entity.HasOne(d => d.IdMarcaNavigation).WithMany(p => p.Modelos)
+                .HasForeignKey(d => d.IdMarca)
+                .HasConstraintName("FK_Modelos_Marca");
         });
 
         modelBuilder.Entity<Registro>(entity =>
