@@ -18,38 +18,34 @@ namespace VoltAir.Repositories
 
         public List<Marca> GetMarca()
         {
+
+
             try
             {
-                return null;
+                return ctx.Marcas.ToList();
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+
+
+        public Marca GetBrandById(Guid idMarca)
+        {
+            try
+            {
+                return ctx.Marcas
+                        .Include(c => c.Modelos)
+                    .FirstOrDefault(c => c.IdMarca == idMarca)!;
             }
             catch (Exception)
             {
 
-                try
-                {
-                    return null;
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-            }
-        }
-
-
-            public Marca GetBrandById(Guid idMarca)
-            {
-                try
-                {
-                    return ctx.Marcas
-                    
-                        .FirstOrDefault(c => c.IdMarca == idMarca)!;
-                }
-                catch (Exception)
-                {
-
-                    throw;
-                }
+                throw;
             }
         }
     }
+}

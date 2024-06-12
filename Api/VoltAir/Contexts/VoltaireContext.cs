@@ -28,7 +28,7 @@ public partial class VoltaireContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=NOTE20-S21; Initial Catalog=dbVoltaire; User Id=sa; Password=Senai@134; TrustServerCertificate=true;");
+        => optionsBuilder.UseSqlServer("Data Source=DESKTOP-MHF127S; Initial Catalog=dbVoltaire; User Id=sa; Password=Senai@134; TrustServerCertificate=true;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -41,7 +41,6 @@ public partial class VoltaireContext : DbContext
                 .HasColumnName("idCarro");
             entity.Property(e => e.BateriaAtual).HasColumnType("datetime");
             entity.Property(e => e.IdModelo).HasColumnName("idModelo");
-            entity.Property(e => e.IdRegistro).HasColumnName("idRegistro");
             entity.Property(e => e.IdUsuario).HasColumnName("idUsuario");
             entity.Property(e => e.Placa)
                 .HasMaxLength(255)
@@ -52,10 +51,6 @@ public partial class VoltaireContext : DbContext
                 .HasForeignKey(d => d.IdModelo)
                 .HasConstraintName("FK_Carros_Modelos");
 
-            entity.HasOne(d => d.IdRegistroNavigation).WithMany(p => p.Carros)
-                .HasForeignKey(d => d.IdRegistro)
-                .HasConstraintName("FK_Carros_Registros");
-
             entity.HasOne(d => d.IdUsuarioNavigation).WithMany(p => p.Carros)
                 .HasForeignKey(d => d.IdUsuario)
                 .HasConstraintName("FK_Carros_Usuarios");
@@ -63,7 +58,7 @@ public partial class VoltaireContext : DbContext
 
         modelBuilder.Entity<Marca>(entity =>
         {
-            entity.HasKey(e => e.IdMarca).HasName("PK__Marca__70331812E7574424");
+            entity.HasKey(e => e.IdMarca).HasName("PK__Marca__70331812A46753E3");
 
             entity.ToTable("Marca");
 
@@ -102,7 +97,12 @@ public partial class VoltaireContext : DbContext
                 .ValueGeneratedNever()
                 .HasColumnName("idRegistro");
             entity.Property(e => e.DuracaoRecarga).HasColumnType("datetime");
+            entity.Property(e => e.IdCarro).HasColumnName("idCarro");
             entity.Property(e => e.UltimaRecarga).HasColumnType("datetime");
+
+            entity.HasOne(d => d.IdCarroNavigation).WithMany(p => p.Registros)
+                .HasForeignKey(d => d.IdCarro)
+                .HasConstraintName("FK_Registros_Carros");
         });
 
         modelBuilder.Entity<Usuario>(entity =>

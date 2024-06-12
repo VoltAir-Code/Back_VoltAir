@@ -9,6 +9,8 @@ public partial class Modelo
 
     public Guid? IdMarca { get; set; }
 
+    public Guid? IdMarca { get; set; }
+
     public string? NomeModelo { get; set; }
 
     public int? Autonomia { get; set; }

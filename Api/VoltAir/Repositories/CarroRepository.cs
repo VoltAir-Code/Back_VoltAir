@@ -13,8 +13,12 @@ namespace VoltAir.Repositories
         {
             try
             {
+
                 return ctx.Carros
          .FirstOrDefault(c => c.IdCarro == idCarro)!;
+
+         
+
             }
             catch (Exception)
             {
@@ -27,15 +31,19 @@ namespace VoltAir.Repositories
         {
             try
             {
+
                 return ctx.Carros
-                    
+
                     .Select(c => new Carro
                     {
                         IdCarro = c.IdCarro
-            
 
-               
+
+
                     }).ToList();
+
+              
+
             }
             catch (Exception)
             {
@@ -49,7 +57,8 @@ namespace VoltAir.Repositories
             var searchCar = ctx.Carros.Find(idCarro);
 
 
-            searchCar.Placa = car.Placa;
+            searchCar!.Placa = car.Placa;
+
 
             ctx.Entry(searchCar).CurrentValues.SetValues(searchCar);
 
