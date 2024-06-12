@@ -37,7 +37,7 @@ namespace VoltAir.Utils.Mail
                 MailRequest requst = new MailRequest
                 {
                     ToEmail = email,
-                    Subject = "Bem vindo ao Voltaire",
+                    Subject = "Código de Recuperação",
                     Body = GetHtmlContentRecovery(codigo)
                 };
 

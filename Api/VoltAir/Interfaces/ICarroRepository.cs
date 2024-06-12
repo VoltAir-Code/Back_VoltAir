@@ -6,7 +6,7 @@ namespace VoltAir.Interfaces
     {
         public List<Carro> GetCarro();
 
-        Carro UpdateCar(Guid idCarro,Carro car);
+        Carro UpdateCar(Guid idUsuario,Carro car);
 
         Carro GetCarById(Guid idCarro);
     }

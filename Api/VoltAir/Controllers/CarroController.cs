@@ -33,11 +33,11 @@ namespace VoltAir.Controllers
 
 
         [HttpPut]
-        public IActionResult PutCar(Guid idCarro, Carro car)
+        public IActionResult PutCar(Guid idUsuario, Carro car)
         {
             try
             {
-                return Ok(carroRepository.UpdateCar(idCarro, car));
+                return Ok(carroRepository.UpdateCar(idUsuario, car));
             }
             catch (Exception)
             {

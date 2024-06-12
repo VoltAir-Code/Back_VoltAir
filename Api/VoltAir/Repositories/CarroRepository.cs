@@ -17,7 +17,7 @@ namespace VoltAir.Repositories
                 return ctx.Carros
          .FirstOrDefault(c => c.IdCarro == idCarro)!;
 
-         
+
 
             }
             catch (Exception)
@@ -42,7 +42,7 @@ namespace VoltAir.Repositories
 
                     }).ToList();
 
-              
+
 
             }
             catch (Exception)
@@ -52,19 +52,39 @@ namespace VoltAir.Repositories
             }
         }
 
-        public Carro UpdateCar(Guid idCarro, Carro car)
+        public Carro UpdateCar(Guid idUsuario, Carro car)
         {
-            var searchCar = ctx.Carros.Find(idCarro);
 
+            var userCar = ctx.Carros.FirstOrDefault(x => x.IdUsuario == idUsuario);
 
-            searchCar!.Placa = car.Placa;
+            if (userCar != null)
+            {
+                userCar.IdModelo = car.IdModelo;
+                userCar.Placa = car.Placa;  
+                ctx.Entry(userCar).CurrentValues.SetValues(userCar);
+            }
+            else
+            {
+                Carro carro = new Carro();
+                carro.Placa = car.Placa;
+                carro.IdUsuario = idUsuario;
+                carro.IdModelo = car.IdModelo;
+                var modeloSelecionado = ctx.Modelos.Find(car.IdModelo);
+                carro.BateriaAtual = modeloSelecionado!.DurBateria;
 
+                ctx.Carros.Add(carro);  
+            }
 
-            ctx.Entry(searchCar).CurrentValues.SetValues(searchCar);
 
             ctx.SaveChanges();
 
-            return searchCar;
+
+
+
+
+
+
+            return  car;
 
         }
 

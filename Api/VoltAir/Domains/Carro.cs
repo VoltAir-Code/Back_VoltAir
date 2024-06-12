@@ -9,8 +9,6 @@ public partial class Carro
 
     public Guid? IdUsuario { get; set; }
 
-    public Guid? IdRegistro { get; set; }
-
     public Guid? IdModelo { get; set; }
 
     public string? Placa { get; set; }
