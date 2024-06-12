@@ -47,11 +47,11 @@ namespace VoltAir.Controllers
         }
 
         [HttpGet("BuscarPorId")]
-        public IActionResult GetCarById(Guid idCarro)
+        public IActionResult GetCarById(Guid idUser)
         {
             try
             {
-                return Ok(carroRepository.GetCarById(idCarro));
+                return Ok(carroRepository.GetCarById(idUser));
             }
             catch (Exception ex)
             {
