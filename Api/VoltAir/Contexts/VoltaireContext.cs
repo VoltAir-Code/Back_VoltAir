@@ -41,7 +41,6 @@ public partial class VoltaireContext : DbContext
                 .HasColumnName("idCarro");
             entity.Property(e => e.BateriaAtual).HasColumnType("datetime");
             entity.Property(e => e.IdModelo).HasColumnName("idModelo");
-            entity.Property(e => e.IdRegistro).HasColumnName("idRegistro");
             entity.Property(e => e.IdUsuario).HasColumnName("idUsuario");
             entity.Property(e => e.Placa)
                 .HasMaxLength(255)
@@ -51,10 +50,6 @@ public partial class VoltaireContext : DbContext
             entity.HasOne(d => d.IdModeloNavigation).WithMany(p => p.Carros)
                 .HasForeignKey(d => d.IdModelo)
                 .HasConstraintName("FK_Carros_Modelos");
-
-            entity.HasOne(d => d.IdRegistroNavigation).WithMany(p => p.Carros)
-                .HasForeignKey(d => d.IdRegistro)
-                .HasConstraintName("FK_Carros_Registros");
 
             entity.HasOne(d => d.IdUsuarioNavigation).WithMany(p => p.Carros)
                 .HasForeignKey(d => d.IdUsuario)
@@ -102,7 +97,12 @@ public partial class VoltaireContext : DbContext
                 .ValueGeneratedNever()
                 .HasColumnName("idRegistro");
             entity.Property(e => e.DuracaoRecarga).HasColumnType("datetime");
+            entity.Property(e => e.IdCarro).HasColumnName("idCarro");
             entity.Property(e => e.UltimaRecarga).HasColumnType("datetime");
+
+            entity.HasOne(d => d.IdCarroNavigation).WithMany(p => p.Registros)
+                .HasForeignKey(d => d.IdCarro)
+                .HasConstraintName("FK_Registros_Carros");
         });
 
         modelBuilder.Entity<Usuario>(entity =>

@@ -9,8 +9,6 @@ public partial class Carro
 
     public Guid? IdUsuario { get; set; }
 
-    public Guid? IdRegistro { get; set; }
-
     public Guid? IdModelo { get; set; }
 
     public string? Placa { get; set; }
@@ -19,7 +17,7 @@ public partial class Carro
 
     public virtual Modelo? IdModeloNavigation { get; set; }
 
-    public virtual Registro? IdRegistroNavigation { get; set; }
-
     public virtual Usuario? IdUsuarioNavigation { get; set; }
+
+    public virtual ICollection<Registro> Registros { get; set; } = new List<Registro>();
 }
