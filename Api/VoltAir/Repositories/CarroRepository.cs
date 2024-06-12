@@ -9,18 +9,41 @@ namespace VoltAir.Repositories
     {
         VoltaireContext ctx = new VoltaireContext();
 
-        public Carro GetCarById(Guid idCarro)
+        public Carro GetCarById(Guid idUser)
         {
             try
             {
 
                 return ctx.Carros
-         .FirstOrDefault(c => c.IdCarro == idCarro)!;
+                    .Select(c => new Carro
+                    {
+                        IdCarro = c.IdCarro,
+                        IdUsuario = c.IdUsuario,
+                        IdModelo = c.IdModelo,
+                        Placa = c.Placa,
+                        BateriaAtual = c.BateriaAtual,
 
-         
+                        IdModeloNavigation = new Modelo
+                        {
+                            NomeModelo = c.IdModeloNavigation!.NomeModelo,
+                            Capacidade = c.IdModeloNavigation!.Capacidade,
+                            Autonomia = c.IdModeloNavigation!.Autonomia,
+                            DurBateria = c.IdModeloNavigation!.DurBateria,
+                            IdMarcaNavigation = new Marca
+                            {
+                                NomeMarca = c.IdModeloNavigation.IdMarcaNavigation!.NomeMarca,
+
+                            }
+                            
+                        }
+
+                    })
+                    .FirstOrDefault(c => c.IdUsuario == idUser)!;
+
+
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
                 throw;
@@ -42,7 +65,7 @@ namespace VoltAir.Repositories
 
                     }).ToList();
 
-              
+
 
             }
             catch (Exception)

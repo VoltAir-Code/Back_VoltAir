@@ -8,6 +8,6 @@ namespace VoltAir.Interfaces
 
         Carro UpdateCar(Guid idCarro,Carro car);
 
-        Carro GetCarById(Guid idCarro);
+        Carro GetCarById(Guid idUsuario);
     }
 }
