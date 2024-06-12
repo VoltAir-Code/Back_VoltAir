@@ -20,14 +20,14 @@ namespace VoltAir.Repositories
         {
             try
             {
-                return ctx.Marcas.Include(x => x.Carros).ToList();
+                return null;
             }
             catch (Exception)
             {
 
                 try
                 {
-                    return ctx.Marcas.Include(m => m.Carros).ToList();
+                    return null;
                 }
                 catch (Exception)
                 {
@@ -42,7 +42,7 @@ namespace VoltAir.Repositories
                 try
                 {
                     return ctx.Marcas
-                        .Include(m => m.Carros)
+                    
                         .FirstOrDefault(c => c.IdMarca == idMarca)!;
                 }
                 catch (Exception)
