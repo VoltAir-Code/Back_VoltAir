@@ -22,9 +22,9 @@ namespace VoltAir.Repositories
                         IdModelo = c.IdModelo,
                         Placa = c.Placa,
                         BateriaAtual = c.BateriaAtual,
-
                         IdModeloNavigation = new Modelo
                         {
+                            IdModelo = c.IdModeloNavigation!.IdModelo,
                             NomeModelo = c.IdModeloNavigation!.NomeModelo,
                             Capacidade = c.IdModeloNavigation!.Capacidade,
                             Autonomia = c.IdModeloNavigation!.Autonomia,
