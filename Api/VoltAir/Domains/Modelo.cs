@@ -5,7 +5,7 @@ namespace VoltAir.Domains;
 
 public partial class Modelo
 {
-    public Guid IdModelo { get; set; } = Guid.NewGuid();
+    public Guid IdModelo { get; set; }
 
     public Guid? IdMarca { get; set; }
 

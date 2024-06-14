@@ -34,7 +34,7 @@ namespace VoltAir.Repositories
                                 NomeMarca = c.IdModeloNavigation.IdMarcaNavigation!.NomeMarca,
 
                             }
-                            
+
                         }
 
                     })
@@ -91,23 +91,36 @@ namespace VoltAir.Repositories
                 carro.IdUsuario = idUsuario;
                 carro.IdModelo = car.IdModelo;
                 var modeloSelecionado = ctx.Modelos.Find(car.IdModelo);
-                carro.BateriaAtual = modeloSelecionado!.DurBateria;
+                carro.BateriaAtual = 1;
 
                 ctx.Carros.Add(carro);  
             }
 
-
             ctx.SaveChanges();
-
-
-
-
-
-
-
             return  car;
 
         }
+
+        public Carro UpdateCarBattery(Guid idUsuario, Carro car)
+        {
+            try
+            {
+                var userCar = ctx.Carros.FirstOrDefault(x => x.IdUsuario == idUsuario);
+
+                userCar!.BateriaAtual = car.BateriaAtual;
+                ctx.Entry(userCar).CurrentValues.SetValues(userCar);
+                ctx.SaveChanges();
+                return car;
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+
 
     }
 }
