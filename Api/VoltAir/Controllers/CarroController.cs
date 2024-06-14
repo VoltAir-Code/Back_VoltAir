@@ -59,5 +59,19 @@ namespace VoltAir.Controllers
                 return BadRequest(ex.InnerException);
             }
         }
+
+        [HttpPut("AtualizarBateria")]
+        public IActionResult PutCarBattery(Guid idUsuario, Carro car)
+        {
+            try
+            {
+                return Ok(carroRepository.UpdateCarBattery(idUsuario, car));
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest(ex.InnerException);
+            }
+        }
     }
 }

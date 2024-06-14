@@ -34,7 +34,7 @@ namespace VoltAir.Repositories
                                 NomeMarca = c.IdModeloNavigation.IdMarcaNavigation!.NomeMarca,
 
                             }
-                            
+
                         }
 
                     })
@@ -96,18 +96,31 @@ namespace VoltAir.Repositories
                 ctx.Carros.Add(carro);  
             }
 
-
             ctx.SaveChanges();
-
-
-
-
-
-
-
             return  car;
 
         }
+
+        public Carro UpdateCarBattery(Guid idUsuario, Carro car)
+        {
+            try
+            {
+                var userCar = ctx.Carros.FirstOrDefault(x => x.IdUsuario == idUsuario);
+
+                userCar!.BateriaAtual = car.BateriaAtual;
+                ctx.Entry(userCar).CurrentValues.SetValues(userCar);
+                ctx.SaveChanges();
+                return car;
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+
 
     }
 }
