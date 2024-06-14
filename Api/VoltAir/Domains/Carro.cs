@@ -5,7 +5,7 @@ namespace VoltAir.Domains;
 
 public partial class Carro
 {
-    public Guid IdCarro { get; set; }
+    public Guid IdCarro { get; set; } = new Guid();
 
     public Guid? IdUsuario { get; set; }
 

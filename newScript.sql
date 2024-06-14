@@ -1,11 +1,10 @@
 USE [master]
 GO
-/****** Object:  Database [dbVoltaire]    Script Date: 11/06/2024 10:42:33 ******/
+/****** Object:  Database [dbVoltaire]    Script Date: 14/06/2024 10:59:02 ******/
 CREATE DATABASE [dbVoltaire]
-GO
 USE [dbVoltaire]
 GO
-/****** Object:  Table [dbo].[Carros]    Script Date: 11/06/2024 10:42:33 ******/
+/****** Object:  Table [dbo].[Carros]    Script Date: 14/06/2024 10:59:02 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -13,17 +12,16 @@ GO
 CREATE TABLE [dbo].[Carros](
 	[idCarro] [uniqueidentifier] NOT NULL,
 	[idUsuario] [uniqueidentifier] NULL,
-	[idRegistro] [uniqueidentifier] NULL,
 	[idModelo] [uniqueidentifier] NULL,
 	[placa] [varchar](255) NULL,
-	[BateriaAtual] [datetime] NULL,
+	[BateriaAtual] [decimal](18, 15) NULL,
  CONSTRAINT [PK__Carros__3D09E20E3C025E74] PRIMARY KEY CLUSTERED 
 (
 	[idCarro] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Marca]    Script Date: 11/06/2024 10:42:33 ******/
+/****** Object:  Table [dbo].[Marca]    Script Date: 14/06/2024 10:59:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -37,7 +35,7 @@ PRIMARY KEY CLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Modelos]    Script Date: 11/06/2024 10:42:33 ******/
+/****** Object:  Table [dbo].[Modelos]    Script Date: 14/06/2024 10:59:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -55,13 +53,14 @@ CREATE TABLE [dbo].[Modelos](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Registros]    Script Date: 11/06/2024 10:42:33 ******/
+/****** Object:  Table [dbo].[Registros]    Script Date: 14/06/2024 10:59:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Registros](
 	[idRegistro] [uniqueidentifier] NOT NULL,
+	[idCarro] [uniqueidentifier] NULL,
 	[UltimaRecarga] [datetime] NULL,
 	[DuracaoRecarga] [datetime] NULL,
  CONSTRAINT [PK__Registro__62FC8F58FCF1BD8A] PRIMARY KEY CLUSTERED 
@@ -70,7 +69,7 @@ CREATE TABLE [dbo].[Registros](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Usuarios]    Script Date: 11/06/2024 10:42:33 ******/
+/****** Object:  Table [dbo].[Usuarios]    Script Date: 14/06/2024 10:59:03 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -88,13 +87,13 @@ CREATE TABLE [dbo].[Usuarios](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-INSERT [dbo].[Carros] ([idCarro], [idUsuario], [idRegistro], [idModelo], [placa], [BateriaAtual]) VALUES (N'6f0acdf3-3d48-418a-a466-2ab3976eb605', NULL, NULL, NULL, NULL, CAST(N'1900-01-01T05:00:00.000' AS DateTime))
+INSERT [dbo].[Carros] ([idCarro], [idUsuario], [idModelo], [placa], [BateriaAtual]) VALUES (N'6f0acdf3-3d48-418a-a466-2ab3976eb605', N'16b79f47-6d78-476b-a99c-102116efb799', N'169871f1-231f-4cf2-9f06-fbbda4d223d7', N'BABB222', CAST(0.500000000000000 AS Decimal(18, 15)))
 GO
-INSERT [dbo].[Carros] ([idCarro], [idUsuario], [idRegistro], [idModelo], [placa], [BateriaAtual]) VALUES (N'3a35df83-d51d-49a4-ae6f-81b32f140f7e', NULL, NULL, NULL, NULL, CAST(N'1900-01-01T05:00:00.000' AS DateTime))
+INSERT [dbo].[Carros] ([idCarro], [idUsuario], [idModelo], [placa], [BateriaAtual]) VALUES (N'3a35df83-d51d-49a4-ae6f-81b32f140f7e', NULL, NULL, NULL, CAST(0.000000000000000 AS Decimal(18, 15)))
 GO
-INSERT [dbo].[Carros] ([idCarro], [idUsuario], [idRegistro], [idModelo], [placa], [BateriaAtual]) VALUES (N'6be9526c-4df4-406e-ad50-ca99c0f03a93', NULL, NULL, NULL, NULL, CAST(N'1900-01-01T05:00:00.000' AS DateTime))
+INSERT [dbo].[Carros] ([idCarro], [idUsuario], [idModelo], [placa], [BateriaAtual]) VALUES (N'6be9526c-4df4-406e-ad50-ca99c0f03a93', NULL, NULL, NULL, CAST(0.000000000000000 AS Decimal(18, 15)))
 GO
-INSERT [dbo].[Carros] ([idCarro], [idUsuario], [idRegistro], [idModelo], [placa], [BateriaAtual]) VALUES (N'84bc400f-f2e1-45b3-a460-fd9afc6565e4', NULL, NULL, NULL, NULL, CAST(N'1900-01-01T05:00:00.000' AS DateTime))
+INSERT [dbo].[Carros] ([idCarro], [idUsuario], [idModelo], [placa], [BateriaAtual]) VALUES (N'84bc400f-f2e1-45b3-a460-fd9afc6565e4', NULL, NULL, NULL, CAST(0.000000000000000 AS Decimal(18, 15)))
 GO
 INSERT [dbo].[Marca] ([idMarca], [nomeMarca]) VALUES (N'86996daa-278f-4e47-b505-29e494c65e55', N'Volvo')
 GO
@@ -104,15 +103,37 @@ INSERT [dbo].[Marca] ([idMarca], [nomeMarca]) VALUES (N'3745e7a8-8df9-45bd-9652-
 GO
 INSERT [dbo].[Marca] ([idMarca], [nomeMarca]) VALUES (N'be4ff398-de10-44e6-9dce-fb83d989a659', N'BYD')
 GO
+INSERT [dbo].[Modelos] ([idModelo], [idMarca], [nomeModelo], [Autonomia], [Capacidade], [DurBateria]) VALUES (N'd967b75d-ccf6-4f4f-a80b-07ceda8cb070', N'86996daa-278f-4e47-b505-29e494c65e55', N'EX90', 600, 111, CAST(N'1900-01-01T05:00:00.000' AS DateTime))
+GO
+INSERT [dbo].[Modelos] ([idModelo], [idMarca], [nomeModelo], [Autonomia], [Capacidade], [DurBateria]) VALUES (N'2b674414-a5ec-4598-a606-15a883891f9e', N'3745e7a8-8df9-45bd-9652-df1a663a63be', N'Model S', 634, 103, CAST(N'1900-01-01T05:00:00.000' AS DateTime))
+GO
+INSERT [dbo].[Modelos] ([idModelo], [idMarca], [nomeModelo], [Autonomia], [Capacidade], [DurBateria]) VALUES (N'73b37a8a-ad33-47d5-876f-44967c79a482', N'3745e7a8-8df9-45bd-9652-df1a663a63be', N'Model Y', 600, 78, CAST(N'1900-01-01T05:00:00.000' AS DateTime))
+GO
 INSERT [dbo].[Modelos] ([idModelo], [idMarca], [nomeModelo], [Autonomia], [Capacidade], [DurBateria]) VALUES (N'4330cd8a-a63e-48c0-b93c-46594ab47731', N'be4ff398-de10-44e6-9dce-fb83d989a659', N'Dolphin', 291, 45, CAST(N'1900-01-01T05:00:00.000' AS DateTime))
 GO
 INSERT [dbo].[Modelos] ([idModelo], [idMarca], [nomeModelo], [Autonomia], [Capacidade], [DurBateria]) VALUES (N'1b6a69a1-ffee-4201-a741-658c1f022fdd', N'de419380-bab9-4029-a941-862ad932ed76', N'i8', 51, 11, CAST(N'1900-01-01T05:00:00.000' AS DateTime))
 GO
 INSERT [dbo].[Modelos] ([idModelo], [idMarca], [nomeModelo], [Autonomia], [Capacidade], [DurBateria]) VALUES (N'4fe3c974-b1a4-49d4-a719-767b16cc58de', N'3745e7a8-8df9-45bd-9652-df1a663a63be', N'Model X', 500, 100, CAST(N'1900-01-01T05:00:00.000' AS DateTime))
 GO
+INSERT [dbo].[Modelos] ([idModelo], [idMarca], [nomeModelo], [Autonomia], [Capacidade], [DurBateria]) VALUES (N'3540f2d4-5c93-44c8-94d6-938b73867233', N'be4ff398-de10-44e6-9dce-fb83d989a659', N'Tan', 309, 88, CAST(N'1900-01-01T05:00:00.000' AS DateTime))
+GO
+INSERT [dbo].[Modelos] ([idModelo], [idMarca], [nomeModelo], [Autonomia], [Capacidade], [DurBateria]) VALUES (N'fbed65f2-5085-48b7-ab7c-945dfdb6e4d7', N'3745e7a8-8df9-45bd-9652-df1a663a63be', N'Cybertruck', 547, 120, CAST(N'1900-01-01T05:00:00.000' AS DateTime))
+GO
+INSERT [dbo].[Modelos] ([idModelo], [idMarca], [nomeModelo], [Autonomia], [Capacidade], [DurBateria]) VALUES (N'8e54697e-4136-408b-a5b5-b61cea427b66', N'be4ff398-de10-44e6-9dce-fb83d989a659', N'Han', 349, 86, CAST(N'1900-01-01T05:00:00.000' AS DateTime))
+GO
+INSERT [dbo].[Modelos] ([idModelo], [idMarca], [nomeModelo], [Autonomia], [Capacidade], [DurBateria]) VALUES (N'6e08da1f-73e6-4db7-a342-c105b9d5453d', N'de419380-bab9-4029-a941-862ad932ed76', N'i3', 160, 42, CAST(N'1900-01-01T05:00:00.000' AS DateTime))
+GO
+INSERT [dbo].[Modelos] ([idModelo], [idMarca], [nomeModelo], [Autonomia], [Capacidade], [DurBateria]) VALUES (N'16ef8910-4d9d-409d-8ebe-cab50a93dd98', N'de419380-bab9-4029-a941-862ad932ed76', N'iX', 528, 111, CAST(N'1900-01-01T05:00:00.000' AS DateTime))
+GO
+INSERT [dbo].[Modelos] ([idModelo], [idMarca], [nomeModelo], [Autonomia], [Capacidade], [DurBateria]) VALUES (N'c4e6cdde-47ae-4739-95e7-d08184504451', N'be4ff398-de10-44e6-9dce-fb83d989a659', N'Seal', 372, 82, CAST(N'1900-01-01T05:00:00.000' AS DateTime))
+GO
+INSERT [dbo].[Modelos] ([idModelo], [idMarca], [nomeModelo], [Autonomia], [Capacidade], [DurBateria]) VALUES (N'4d4a68ef-a659-4642-89fc-d2b159edc32f', N'86996daa-278f-4e47-b505-29e494c65e55', N'C40', 385, 78, CAST(N'1900-01-01T05:00:00.000' AS DateTime))
+GO
+INSERT [dbo].[Modelos] ([idModelo], [idMarca], [nomeModelo], [Autonomia], [Capacidade], [DurBateria]) VALUES (N'93a7859a-ad28-4133-897d-f760432a52a9', N'86996daa-278f-4e47-b505-29e494c65e55', N'EX30', 338, 69, CAST(N'1900-01-01T05:00:00.000' AS DateTime))
+GO
 INSERT [dbo].[Modelos] ([idModelo], [idMarca], [nomeModelo], [Autonomia], [Capacidade], [DurBateria]) VALUES (N'169871f1-231f-4cf2-9f06-fbbda4d223d7', N'86996daa-278f-4e47-b505-29e494c65e55', N'XC40', 231, 69, CAST(N'1900-01-01T05:00:00.000' AS DateTime))
 GO
-INSERT [dbo].[Usuarios] ([idUsuario], [nome], [email], [senha], [CodRecupSenha], [foto]) VALUES (N'00000000-0000-0000-0000-000000000000', N'Artur Fiorentino', N'afiorentino1415@gmail.com', N'$2a$11$VnRwd9cehqPDdNAjlaEeDuS8PaoloGGiBSiaPxb7KGP9dU1taP9Uu', NULL, NULL)
+INSERT [dbo].[Usuarios] ([idUsuario], [nome], [email], [senha], [CodRecupSenha], [foto]) VALUES (N'00000000-0000-0000-0000-000000000000', N'Artur Fiorentino', N'afiorentino1415@gmail.com', N'$2a$11$uTz0g4XSwYmrUXpeQlCJ2er4OVfzn5yW684W1cFcmHmJx.Nf6Nvee', NULL, NULL)
 GO
 INSERT [dbo].[Usuarios] ([idUsuario], [nome], [email], [senha], [CodRecupSenha], [foto]) VALUES (N'16b79f47-6d78-476b-a99c-102116efb799', N'Richard', N'richardfpassarelli@gmail.com', N'$2a$11$UnfkYn9pXrtF.SmLin9km.cWU1ahbmEEEDSlu/t0dAAdhNlL3YAgi', NULL, N'string')
 GO
@@ -128,15 +149,12 @@ INSERT [dbo].[Usuarios] ([idUsuario], [nome], [email], [senha], [CodRecupSenha],
 GO
 INSERT [dbo].[Usuarios] ([idUsuario], [nome], [email], [senha], [CodRecupSenha], [foto]) VALUES (N'cfb52ef5-fdbc-411a-b785-8cadedd0ae45', N'Gabriel', N'bielgvsa@gmail.com', N'$2a$11$EyL9QhnDEtM7wqcMxQyz3OyEQ1cyN97ZZmQf9WmLWZYkO/2rtyWRW', NULL, NULL)
 GO
+INSERT [dbo].[Usuarios] ([idUsuario], [nome], [email], [senha], [CodRecupSenha], [foto]) VALUES (N'a2d8ca64-b81c-40ce-9e9e-c011994d2616', N'Anna ', N'annabbarbosa2712@gmail.com', N'$2a$11$uw.btbW44FQ3bxzY/CrmrOL1kCXMvITgcKkB9niu0n.fGRrbX5kz2', 5456, NULL)
+GO
 ALTER TABLE [dbo].[Carros]  WITH CHECK ADD  CONSTRAINT [FK_Carros_Modelos] FOREIGN KEY([idModelo])
 REFERENCES [dbo].[Modelos] ([idModelo])
 GO
 ALTER TABLE [dbo].[Carros] CHECK CONSTRAINT [FK_Carros_Modelos]
-GO
-ALTER TABLE [dbo].[Carros]  WITH CHECK ADD  CONSTRAINT [FK_Carros_Registros] FOREIGN KEY([idRegistro])
-REFERENCES [dbo].[Registros] ([idRegistro])
-GO
-ALTER TABLE [dbo].[Carros] CHECK CONSTRAINT [FK_Carros_Registros]
 GO
 ALTER TABLE [dbo].[Carros]  WITH CHECK ADD  CONSTRAINT [FK_Carros_Usuarios] FOREIGN KEY([idUsuario])
 REFERENCES [dbo].[Usuarios] ([idUsuario])
@@ -147,6 +165,11 @@ ALTER TABLE [dbo].[Modelos]  WITH CHECK ADD  CONSTRAINT [FK_Modelos_Marca] FOREI
 REFERENCES [dbo].[Marca] ([idMarca])
 GO
 ALTER TABLE [dbo].[Modelos] CHECK CONSTRAINT [FK_Modelos_Marca]
+GO
+ALTER TABLE [dbo].[Registros]  WITH CHECK ADD  CONSTRAINT [FK_Registros_Carros] FOREIGN KEY([idCarro])
+REFERENCES [dbo].[Carros] ([idCarro])
+GO
+ALTER TABLE [dbo].[Registros] CHECK CONSTRAINT [FK_Registros_Carros]
 GO
 USE [master]
 GO
