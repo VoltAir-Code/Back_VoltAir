@@ -91,7 +91,7 @@ namespace VoltAir.Repositories
                 carro.IdUsuario = idUsuario;
                 carro.IdModelo = car.IdModelo;
                 var modeloSelecionado = ctx.Modelos.Find(car.IdModelo);
-                carro.BateriaAtual = modeloSelecionado!.DurBateria;
+                carro.BateriaAtual = 1;
 
                 ctx.Carros.Add(carro);  
             }
