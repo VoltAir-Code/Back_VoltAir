@@ -107,6 +107,7 @@ namespace VoltAir.Repositories
             {
                 var userCar = ctx.Carros.FirstOrDefault(x => x.IdUsuario == idUsuario);
 
+                
                 userCar!.BateriaAtual = car.BateriaAtual;
                 ctx.Entry(userCar).CurrentValues.SetValues(userCar);
                 ctx.SaveChanges();
