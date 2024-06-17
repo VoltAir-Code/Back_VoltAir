@@ -15,7 +15,7 @@ public partial class Carro
 
     public string? Placa { get; set; }
 
-    public int? BateriaAtual { get; set; }
+    public decimal? BateriaAtual { get; set; }
 
     public virtual Modelo? IdModeloNavigation { get; set; }
 
