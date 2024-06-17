@@ -118,7 +118,6 @@ namespace VoltAir.Repositories
 
                 if (userSearch != null)
                 {
-
                     return;
                 }
 
