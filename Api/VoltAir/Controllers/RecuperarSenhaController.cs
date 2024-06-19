@@ -30,7 +30,7 @@ namespace VoltAir.Controllers
 
                 if (user == null)
                 {
-                    return NotFound("Usuário não encontrado!");
+                    return BadRequest("Email Inválido!");
                 }
 
                 Random random = new Random();

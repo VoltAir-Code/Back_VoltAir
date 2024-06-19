@@ -5,19 +5,21 @@ namespace VoltAir.Domains;
 
 public partial class Carro
 {
-    public Guid IdCarro { get; set; } = Guid.NewGuid();
+    public Guid IdCarro { get; set; }
 
     public Guid? IdUsuario { get; set; }
+
+    public Guid? IdRegistro { get; set; }
 
     public Guid? IdModelo { get; set; }
 
     public string? Placa { get; set; }
 
-    public decimal? BateriaAtual { get; set; }
+    public int? BateriaAtual { get; set; }
 
     public virtual Modelo? IdModeloNavigation { get; set; }
 
-    public virtual Usuario? IdUsuarioNavigation { get; set; }
+    public virtual Registro? IdRegistroNavigation { get; set; }
 
-    public virtual ICollection<Registro> Registros { get; set; } = new List<Registro>();
+    public virtual Usuario? IdUsuarioNavigation { get; set; }
 }
